@@ -1,0 +1,278 @@
+.construction-progress {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-color: var(--background);
+  overflow: hidden;
+  z-index: 1;
+}
+
+.construction-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.timeline-scroll {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8vw;
+  padding: 0 6vw;
+  width: max-content;
+  opacity: 0;
+}
+
+.construction-header {
+  flex-shrink: 0;
+  width: 50vw;
+  text-align: left;
+  padding-right: 4vw;
+}
+
+.construction-title {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: #c9a961;
+  margin: 0 0 1rem 0;
+  line-height: 1.1;
+  opacity: 1;
+}
+
+.construction-subtitle {
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  opacity: 1;
+}
+
+/* Timeline Styles */
+.timeline-container {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4vw;
+  flex-shrink: 0;
+}
+
+.timeline-line {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, 
+    rgba(201, 169, 97, 0.3),
+    rgba(201, 169, 97, 0.8),
+    rgba(201, 169, 97, 0.3)
+  );
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.milestone-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 35vw;
+  min-width: 350px;
+  z-index: 2;
+  opacity: 0.4;
+  transition: all 0.3s ease;
+}
+
+.milestone-dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  background: #c9a961;
+  border: 4px solid var(--background);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  box-shadow: 0 0 20px rgba(201, 169, 97, 0.5);
+}
+
+.milestone-upcoming .milestone-dot {
+  background: #c9a961;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.milestone-planned .milestone-dot {
+  background: rgba(201, 169, 97, 0.5);
+  border-color: rgba(201, 169, 97, 0.3);
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(201, 169, 97, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(201, 169, 97, 0.8);
+  }
+}
+
+.milestone-content {
+  width: 100%;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(201, 169, 97, 0.2);
+  border-radius: 8px;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.milestone-content:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(201, 169, 97, 0.4);
+  transform: translateY(-5px);
+}
+
+.milestone-status {
+  display: inline-block;
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.25rem 0.75rem;
+  background: rgba(201, 169, 97, 0.2);
+  color: #c9a961;
+  border-radius: 20px;
+  margin-bottom: 0.75rem;
+}
+
+.milestone-title {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: clamp(1.5rem, 2vw, 2rem);
+  font-weight: 600;
+  color: var(--foreground);
+  margin: 0 0 0.5rem 0;
+  line-height: 1.2;
+}
+
+.milestone-date {
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: clamp(1rem, 1.2vw, 1.1rem);
+  color: #c9a961;
+  font-weight: 500;
+  margin: 0 0 0.75rem 0;
+}
+
+.milestone-description {
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: clamp(0.9rem, 1vw, 1rem);
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Highlights Grid */
+.highlights-grid {
+  display: flex;
+  flex-direction: row;
+  gap: 3vw;
+  flex-shrink: 0;
+  padding-right: 6vw;
+}
+
+.highlight-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(201, 169, 97, 0.2);
+  border-radius: 8px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  opacity: 1;
+  flex-shrink: 0;
+  width: 30vw;
+  min-width: 280px;
+}
+
+.highlight-card:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(201, 169, 97, 0.5);
+  transform: translateY(-10px);
+  box-shadow: 0 10px 30px rgba(201, 169, 97, 0.2);
+}
+
+.highlight-value {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: clamp(2.5rem, 4vw, 4rem);
+  font-weight: 700;
+  color: #c9a961;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.highlight-label {
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: clamp(1rem, 1.2vw, 1.1rem);
+  font-weight: 600;
+  color: var(--foreground);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.25rem;
+}
+
+.highlight-detail {
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: clamp(0.85rem, 1vw, 0.95rem);
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.05em;
+}
+
+/* Responsive Design */
+@media (max-width: 1000px) {
+  .construction-header {
+    width: 60vw;
+  }
+
+  .milestone-item {
+    width: 45vw;
+    min-width: 300px;
+  }
+
+  .highlight-card {
+    width: 40vw;
+    min-width: 250px;
+    padding: 2rem 1.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .construction-header {
+    width: 70vw;
+  }
+
+  .milestone-item {
+    width: 60vw;
+    min-width: 280px;
+  }
+
+  .highlight-card {
+    width: 60vw;
+    min-width: 250px;
+  }
+  
+  .timeline-scroll {
+    gap: 6vw;
+  }
+}
+

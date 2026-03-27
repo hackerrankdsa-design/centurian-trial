@@ -1,0 +1,359 @@
+.footer {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--background);
+  color: #ffffff;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 25;
+}
+
+.footer-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.footer-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(9, 22, 17, 0.95) 0%,
+    rgba(9, 22, 17, 0.85) 50%,
+    rgba(9, 22, 17, 0.75) 100%
+  );
+  z-index: 1;
+}
+
+.footer-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  height: 100%;
+  padding: 4rem;
+  gap: 4rem;
+}
+
+/* Left Side - Form */
+.footer-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 600px;
+}
+
+.footer-title {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin: 0 0 1.5rem 0;
+  color: #ffffff;
+}
+
+.footer-features {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+}
+
+.footer-features span {
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: clamp(0.875rem, 1vw, 1rem);
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 0.05em;
+}
+
+.footer-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.footer-form input,
+.footer-form select {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 1rem 0;
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: 1rem;
+  color: #ffffff;
+  transition: border-color 0.3s ease;
+}
+
+.footer-form input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.footer-form input:focus,
+.footer-form select:focus {
+  outline: none;
+  border-bottom-color: #c9a961;
+}
+
+.phone-input {
+  display: flex;
+  gap: 1rem;
+}
+
+.country-code {
+  width: 120px;
+  cursor: pointer;
+}
+
+.phone-input input {
+  flex: 1;
+}
+
+.footer-submit-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1.25rem 2.5rem;
+  background: #ffffff;
+  border: none;
+  color: var(--background);
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+  align-self: flex-start;
+}
+
+.footer-submit-btn:hover {
+  background: #c9a961;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(201, 169, 97, 0.3);
+}
+
+.download-icon {
+  font-size: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.footer-submit-btn:hover .download-icon {
+  transform: translateY(3px);
+}
+
+/* Right Side - Social Links & Image */
+.footer-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 2rem;
+}
+
+.footer-building-image {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  height: 60%;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.footer-socials {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: flex-end;
+}
+
+.socials-header {
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+}
+
+.footer-social-links {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: flex-end;
+}
+
+.footer-social {
+  position: relative;
+  overflow: hidden;
+}
+
+.footer-social a {
+  display: inline-block;
+  position: relative;
+  text-decoration: none;
+  color: #ffffff;
+  transition: color 0.3s ease;
+}
+
+.footer-social a:hover {
+  color: #c9a961;
+}
+
+.footer-social h3 {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: clamp(1.5rem, 2.5vw, 2.5rem);
+  font-weight: 600;
+  text-transform: uppercase;
+  margin: 0;
+  letter-spacing: 0.05em;
+}
+
+.footer-text {
+  overflow: hidden;
+}
+
+.footer-text-content {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.footer-social a:hover .footer-text-content {
+  transform: translateX(-5px);
+}
+
+/* Bottom Copyright */
+.footer-bottom {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 4rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-bottom p {
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+  letter-spacing: 0.05em;
+}
+
+.footer-scroll-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.scroll-arrow {
+  font-size: 1rem;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+}
+
+/* Mobile Responsive */
+@media (max-width: 1024px) {
+  .footer {
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    padding: 3rem 2rem;
+    gap: 3rem;
+  }
+
+  .footer-left {
+    max-width: 100%;
+  }
+
+  .footer-right {
+    align-items: center;
+    width: 100%;
+  }
+
+  .footer-building-image {
+    max-width: 100%;
+    height: 400px;
+  }
+
+  .footer-socials {
+    align-items: center;
+  }
+
+  .footer-social-links {
+    align-items: center;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .footer-submit-btn {
+    align-self: stretch;
+  }
+}
+
+@media (max-width: 640px) {
+  .footer-content {
+    padding: 2rem 1.5rem;
+  }
+
+  .footer-title {
+    font-size: 2rem;
+  }
+
+  .footer-features {
+    gap: 1rem;
+  }
+
+  .footer-building-image {
+    height: 300px;
+  }
+
+  .footer-social h3 {
+    font-size: 1.5rem;
+  }
+
+  .phone-input {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .country-code {
+    width: 100%;
+  }
+}

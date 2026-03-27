@@ -1,0 +1,9 @@
+.line-mask {
+  overflow: hidden;
+  display: block;
+}
+
+.line {
+  display: block;
+}
+

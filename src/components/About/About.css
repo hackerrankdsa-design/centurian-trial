@@ -1,0 +1,320 @@
+.about {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--background);
+  overflow: hidden;
+  z-index: 8;
+}
+
+.about .about-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background-color: #fff;
+  clip-path: circle(0% at 50% 50%);
+  will-change: clip-path;
+  overflow: hidden;
+}
+
+.about .about-scroll {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 400vw; /* Will be set by JS to 4x viewport */
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateX(0%) scale(0.85);
+  transform-origin: 10% center;
+  will-change: transform;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.about .about-header {
+  position: absolute;
+  white-space: nowrap;
+  opacity: 0;
+  transform: scale(0.85);
+  transform-origin: center;
+  will-change: opacity, transform;
+  left: 0%;
+  top: 50%;
+  z-index: 1;
+}
+
+.about .about-header h1 {
+  font-family: "Barlow Condensed", sans-serif;
+  text-transform: uppercase;
+  font-size: clamp(10vw, 12vw, 14vw);
+  font-weight: 900;
+  color: var(--background);
+  margin: 0;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  -webkit-text-stroke: 2px rgba(201, 169, 97, 0.3);
+}
+
+
+.about .about-content {
+  position: absolute;
+  width: 22vw;
+  z-index: 10;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(201, 169, 97, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.about .about-content h3 {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: clamp(1rem, 1.2vw, 1.4rem);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin: 0 0 0.75rem 0;
+  color: rgba(9, 22, 17, 0.95);
+}
+
+.about .about-content p {
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: clamp(0.875rem, 1vw, 1.125rem);
+  font-weight: 300;
+  line-height: 1.7;
+  color: rgba(9, 22, 17, 0.85);
+  margin: 0;
+  letter-spacing: 0.01em;
+}
+
+.about .about-img {
+  position: absolute;
+  width: 25vw;
+  height: 35vh;
+  will-change: transform;
+  overflow: hidden;
+  border: 1px solid rgba(201, 169, 97, 0.3);
+  transition: border-color 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+  display: block;
+  text-decoration: none;
+  z-index: 10;
+}
+
+.about .about-img:hover {
+  border-color: rgba(201, 169, 97, 0.8);
+  transform: scale(1.05);
+  z-index: 20;
+}
+
+.about .about-img img {
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.about .about-img-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 5;
+}
+
+.about .about-img:hover .about-img-overlay {
+  opacity: 1;
+}
+
+.about .about-img-icon {
+  font-size: 3rem;
+  color: #ffffff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.about #about-img-1 {
+  top: 45%;
+  left: 3%;
+}
+
+.about #about-img-2 {
+  top: 45%;
+  left: 30%;
+}
+
+.about #about-img-3 {
+  top: 12%;
+  left: 40%;
+}
+
+.about #about-img-4 {
+  top: 45%;
+  left: 70%;
+}
+
+.about #about-img-5 {
+  top: 50%;
+  left: 95%;
+}
+
+/* FancyBox custom styles */
+.about .fancybox__container {
+  --fancybox-bg: rgba(9, 22, 17, 0.95);
+  --fancybox-accent-color: #c9a961;
+}
+
+.about .fancybox__caption {
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.9);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  padding: 2rem 1rem 1rem;
+}
+
+.about .fancybox__caption strong {
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #c9a961;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.about .fancybox__caption em {
+  font-style: normal;
+  color: #c9a961;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  display: block;
+  margin-top: 0.5rem;
+}
+
+.about .fancybox__thumbs {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.about .fancybox__thumb {
+  border: 2px solid rgba(201, 169, 97, 0.3);
+  transition: all 0.3s ease;
+}
+
+.about .fancybox__thumb:hover {
+  border-color: rgba(201, 169, 97, 0.8);
+  transform: scale(1.05);
+}
+
+.about .fancybox__thumb.is-selected {
+  border-color: #c9a961;
+  box-shadow: 0 0 15px rgba(201, 169, 97, 0.5);
+}
+
+.about .fancybox__toolbar__column button {
+  color: #c9a961;
+}
+
+.about .fancybox__toolbar__column button:hover {
+  background: rgba(201, 169, 97, 0.2);
+}
+
+.about #about-content-1 {
+  top: 10%;
+  left: 10%;
+}
+
+.about #about-content-2 {
+  top: 55%;
+  left: 40%;
+}
+
+.about #about-content-3 {
+  top: 15%;
+  left: 60%;
+}
+
+.about #about-content-4 {
+  top: 20%;
+  left: 78%;
+}
+
+@media (max-width: 1000px) {
+  /* .about .about-header h1 {
+    font-size: clamp(20vw, 70vw, 70vw);
+  } */
+
+  .about .about-content {
+    width: 40vw;
+    padding: 1.5rem;
+  }
+
+  .about .about-content h3 {
+    font-size: clamp(0.875rem, 2.5vw, 1.125rem);
+  }
+
+  .about .about-content p {
+    font-size: clamp(0.75rem, 2vw, 0.9375rem);
+    line-height: 1.6;
+  }
+
+  .about .about-img {
+    width: 50vw;
+    height: 30vh;
+  }
+
+  .about #about-content-1 {
+    top: 8%;
+    left: 3%;
+  }
+
+  .about #about-content-2 {
+    top: 52%;
+    left: 38%;
+  }
+
+  .about #about-content-3 {
+    top: 12%;
+    left: 58%;
+  }
+
+  .about #about-content-4 {
+    top: 52%;
+    left: 76%;
+  }
+
+  .about #about-img-1 {
+    top: 30%;
+    left: 3%;
+  }
+
+  .about #about-img-2 {
+    top: 50%;
+    left: 25%;
+  }
+
+  .about #about-img-3 {
+    top: 35%;
+    left: 50%;
+  }
+
+  .about #about-img-4 {
+    top: 20%;
+    left: 75%;
+  }
+
+  .about #about-img-5 {
+    top: 50%;
+    left: 95%;
+  }
+}
+

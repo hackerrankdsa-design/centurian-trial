@@ -1,0 +1,242 @@
+.features {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--background);
+  overflow: hidden;
+  z-index: 103;
+}
+
+.features__sticky {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.features__inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  display: flex;
+  will-change: transform;
+}
+
+/* Video Section */
+.features__media {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  flex-shrink: 0;
+}
+
+.features__media-sticky {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.features__media-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+}
+
+.features__video-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(9, 22, 17, 0.7) 0%,
+    rgba(9, 22, 17, 0.5) 50%,
+    rgba(9, 22, 17, 0.7) 100%
+  );
+  z-index: 1;
+}
+
+.features__video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: cover;
+  z-index: 0;
+}
+
+/* Feature Blocks */
+.features__block {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem;
+  background-color: var(--background);
+}
+
+.features__content {
+  max-width: 1200px;
+  width: 100%;
+  color: #ffffff;
+}
+
+.features__title {
+  margin-bottom: 2rem;
+}
+
+.features__title h2 {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: #c9a961;
+  margin: 0;
+  line-height: 1.1;
+}
+
+.features__subtitle {
+  margin-bottom: 3rem;
+  max-width: 800px;
+}
+
+.features__subtitle p {
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+}
+
+.features__list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.features__item {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(201, 169, 97, 0.2);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.features__item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(201, 169, 97, 0.5);
+  transform: translateX(10px);
+}
+
+.features__item-icon {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 2px solid rgba(201, 169, 97, 0.3);
+}
+
+.features__item-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.features__item-text h3 {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: clamp(1.25rem, 1.8vw, 1.5rem);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #c9a961;
+  margin: 0 0 0.5rem 0;
+}
+
+.features__item-text p {
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: clamp(0.875rem, 1.2vw, 1rem);
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+}
+
+/* Mobile Responsive */
+@media (max-width: 1024px) {
+  .features__block {
+    padding: 3rem 2rem;
+  }
+
+  .features__title h2 {
+    font-size: clamp(2rem, 6vw, 3rem);
+  }
+
+  .features__subtitle {
+    margin-bottom: 2rem;
+  }
+
+  .features__list {
+    gap: 1.5rem;
+  }
+
+  .features__item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.25rem;
+  }
+
+  .features__item:hover {
+    transform: translateY(-5px);
+  }
+
+  .features__item-icon {
+    width: 100%;
+    height: 200px;
+  }
+}
+
+@media (max-width: 640px) {
+  .features__block {
+    padding: 2rem 1.5rem;
+  }
+
+  .features__title {
+    margin-bottom: 1.5rem;
+  }
+
+  .features__subtitle {
+    margin-bottom: 1.5rem;
+  }
+
+  .features__list {
+    gap: 1rem;
+  }
+
+  .features__item {
+    padding: 1rem;
+  }
+
+  .features__item-icon {
+    height: 150px;
+  }
+}
+

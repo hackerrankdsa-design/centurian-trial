@@ -1,0 +1,24 @@
+{
+  "name": "Capital One JVC",
+  "version": "2.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=20.9.0"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@fancyapps/ui": "^6.1.2",
+    "@gsap/react": "^2.1.2",
+    "gsap": "^3.13.0",
+    "lenis": "^1.3.8",
+    "next": "^16.1.6",
+    "next-view-transitions": "^0.3.4",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  }
+}

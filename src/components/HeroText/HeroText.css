@@ -1,0 +1,22 @@
+.hero-line-mask {
+  overflow: hidden;
+  display: block;
+}
+
+.hero-line {
+  display: block;
+}
+
+.hero-char-mask {
+  overflow: hidden;
+  display: inline-block;
+}
+
+.hero-char {
+  display: inline-block;
+}
+
+.hero-word {
+  display: inline-block;
+}
+

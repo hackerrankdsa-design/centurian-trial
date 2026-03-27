@@ -1,0 +1,124 @@
+section.floor-plans {
+  position: relative;
+  width: 100%;
+  height: auto;
+  min-height: 88svh;
+  background-color: var(--background);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5rem 1.5rem 5.5rem;
+  z-index: 22;
+  overflow: hidden;
+}
+
+.floor-plans-inner {
+  width: min(1280px, 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.75rem;
+  text-align: center;
+}
+
+.floor-plans-kicker {
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: 0.875rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.floor-plans-title {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: clamp(2rem, 6vw, 4.25rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 0.95;
+  color: #c9a961;
+  margin: 0;
+}
+
+.floor-plans-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.floor-plans-card {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.65rem;
+  padding: 0;
+  border: 1px solid rgba(201, 169, 97, 0.35);
+  border-radius: 10px;
+  background: rgba(9, 22, 17, 0.6);
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+}
+
+.floor-plans-card:hover {
+  border-color: rgba(201, 169, 97, 0.75);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+}
+
+.floor-plans-card-image {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: #050a08;
+}
+
+.floor-plans-view-all {
+  margin-top: 0.25rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.95rem 1.75rem;
+  border: 1px solid rgba(201, 169, 97, 0.7);
+  background: transparent;
+  color: #ffffff;
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.floor-plans-view-all:hover {
+  border-color: #c9a961;
+  color: #c9a961;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 1024px) {
+  .floor-plans-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  section.floor-plans {
+    min-height: auto;
+    padding: 4rem 1.25rem;
+  }
+
+  .floor-plans-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .floor-plans-view-all {
+    width: 100%;
+  }
+}

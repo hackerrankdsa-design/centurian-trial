@@ -1,0 +1,500 @@
+.unit-types {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-color: #0a0f0d;
+  color: #ffffff;
+  padding: 0;
+  z-index: 20;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.unit-types-container {
+  max-width: 1400px;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  padding: 2.5rem 4vw 2rem;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 0;
+}
+
+.unit-types-header {
+  text-align: center;
+  margin-bottom: 1.25rem;
+  flex-shrink: 0;
+}
+
+.unit-types-title {
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: #c9a961;
+  margin: 0 0 0.5rem 0;
+  line-height: 1.1;
+  opacity: 1;
+}
+
+.unit-types-subtitle {
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  opacity: 1;
+}
+
+/* Stats Section */
+.unit-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding: 1.25rem 0;
+  border-top: 1px solid rgba(201, 169, 97, 0.2);
+  border-bottom: 1px solid rgba(201, 169, 97, 0.2);
+  flex-shrink: 0;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-number {
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 700;
+  color: #c9a961;
+  line-height: 1;
+  margin-bottom: 0.25rem;
+}
+
+.stat-label {
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-size: clamp(0.7rem, 0.9vw, 0.85rem);
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* Unit Cards Grid */
+.unit-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 0;
+  flex: 1;
+  align-content: center;
+}
+
+.unit-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(201, 169, 97, 0.3);
+  border-radius: 12px;
+  padding: 1.75rem 1.5rem;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  opacity: 1;
+}
+
+.unit-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  /* background: linear-gradient(to right, var(--accent-color), transparent); */
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+
+.unit-card:hover::before {
+  transform: scaleX(1);
+}
+
+.unit-card:hover {
+  border-color: var(--accent-color);
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(201, 169, 97, 0.15);
+}
+
+.unit-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+
+.unit-type-badge {
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-size: clamp(1rem, 1.4vw, 1.3rem);
+  font-weight: 600;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+}
+
+.unit-count {
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-size: clamp(0.65rem, 0.8vw, 0.75rem);
+  font-weight: 600;
+  color: var(--accent-color);
+  background: rgba(201, 169, 97, 0.15);
+  padding: 0.35rem 0.75rem;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.unit-size {
+  text-align: center;
+  padding: 1.25rem 0;
+  margin-bottom: 1.25rem;
+  border-top: 1px solid rgba(201, 169, 97, 0.2);
+  border-bottom: 1px solid rgba(201, 169, 97, 0.2);
+}
+
+.size-range {
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-size: clamp(1.75rem, 2.8vw, 2.25rem);
+  font-weight: 700;
+  color: var(--accent-color);
+  line-height: 1;
+  margin-bottom: 0.35rem;
+  opacity: 1;
+}
+
+.size-unit {
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-size: clamp(0.7rem, 0.85vw, 0.8rem);
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+
+.unit-card-footer {
+  margin-top: 0;
+}
+
+.unit-enquire-btn {
+  display: block;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: transparent;
+  border: 1px solid var(--accent-color);
+  color: var(--accent-color);
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-size: clamp(0.75rem, 0.9vw, 0.85rem);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.unit-enquire-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--accent-color);
+  transition: left 0.4s ease;
+  z-index: -1;
+}
+
+.unit-enquire-btn:hover::before {
+  left: 0;
+}
+
+.unit-enquire-btn:hover {
+  color: #0a0f0d;
+  border-color: #c9a961;
+}
+
+/* Payment Info */
+.payment-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  margin-top: 1.5rem;
+  padding: 0;
+}
+
+.payment-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(201, 169, 97, 0.3);
+  border-radius: 10px;
+  padding: 1rem 2.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  transition: all 0.3s ease;
+  opacity: 1;
+}
+
+.payment-card:hover {
+  border-color: #c9a961;
+  box-shadow: 0 10px 25px rgba(201, 169, 97, 0.15);
+}
+
+.payment-icon {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.payment-card h3 {
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-size: clamp(0.85rem, 1.1vw, 1rem);
+  font-weight: 600;
+  color: #ffffff;
+  text-transform: uppercase;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.payment-plan {
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-weight: 700;
+  color: #c9a961;
+  line-height: 1;
+  margin: 0;
+}
+
+.payment-card p {
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-size: clamp(0.7rem, 0.85vw, 0.8rem);
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.4;
+  margin: 0;
+  white-space: nowrap;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .unit-cards-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+  }
+  
+  .unit-card {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 1000px) {
+  .unit-types-container {
+    padding: 1.5rem 3vw;
+  }
+
+  .unit-stats {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .unit-cards-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+  }
+
+  .unit-card {
+    padding: 1rem;
+  }
+
+  .payment-card {
+    padding: 0.75rem 1.5rem;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 1000px) {
+  .unit-types {
+    height: auto !important;
+    min-height: auto !important;
+    padding: 2rem 0;
+    overflow: visible;
+  }
+
+  .unit-types-container {
+    height: auto;
+    overflow: visible;
+  }
+
+  .unit-types-title,
+  .unit-types-subtitle,
+  .unit-stats,
+  .unit-card,
+  .payment-info {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .unit-types {
+    padding: 1.5rem 0;
+  }
+  
+  .unit-stats {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+  }
+
+  .unit-cards-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+  }
+
+  .unit-card {
+    padding: 0.75rem;
+  }
+  
+  .payment-card {
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .unit-types-container {
+    padding: 1rem 4vw;
+  }
+
+  .unit-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+    padding: 0.75rem 0;
+  }
+
+  .unit-cards-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+  }
+
+  .unit-card {
+    display: flex;
+    flex-direction: column;
+    padding: 0.6rem;
+    min-height: 180px;
+  }
+
+  .unit-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .unit-type-badge {
+    font-size: 0.7rem;
+    line-height: 1.1;
+  }
+
+  .unit-count {
+    align-self: flex-start;
+    font-size: 0.55rem;
+    padding: 0.2rem 0.4rem;
+  }
+
+  .unit-size {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0.5rem 0;
+    margin-bottom: 0.5rem;
+  }
+
+  .size-range {
+    font-size: 1rem;
+    margin-bottom: 0.15rem;
+  }
+
+  .size-unit {
+    font-size: 0.55rem;
+  }
+
+  .unit-card-footer {
+    margin-top: auto;
+  }
+
+  .unit-enquire-btn {
+    padding: 0.4rem 0.5rem;
+    font-size: 0.55rem;
+  }
+
+  .payment-card {
+    padding: 0.5rem 1rem;
+    gap: 0.5rem;
+  }
+  
+  .payment-card p {
+    white-space: normal;
+  }
+}
+@media (max-width: 400px) {
+  .unit-types-container {
+    padding: 1rem 3vw;
+  }
+
+  .unit-cards-grid {
+    gap: 0.35rem;
+  }
+
+  .unit-card {
+    padding: 0.5rem;
+    min-height: 160px;
+  }
+
+  .unit-type-badge {
+    font-size: 0.6rem;
+  }
+
+  .unit-count {
+    font-size: 0.5rem;
+    padding: 0.15rem 0.35rem;
+  }
+
+  .size-range {
+    font-size: 0.9rem;
+  }
+
+  .size-unit {
+    font-size: 0.5rem;
+  }
+
+  .unit-enquire-btn {
+    padding: 0.35rem 0.4rem;
+    font-size: 0.5rem;
+  }
+}
+
+
