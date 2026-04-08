@@ -134,7 +134,7 @@ const Footer = () => {
         {/* Right Side - Social Links & Building Image */}
         <div className="footer-right">
           <div className="footer-building-image">
-            <Image src="/IMG07.jpg" alt="Building" fill style={{ objectFit: 'cover' }} />
+            <Image src="/img8.png" alt="Building" fill style={{ objectFit: 'cover' }} />
           </div>
 
           <div className="footer-socials">

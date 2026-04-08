@@ -279,13 +279,13 @@ const About = () => {
           </div>
 
           <a 
-            href="/IMG07.jpg" 
+            href="/img9.png" 
             data-fancybox="gallery" 
-            data-caption="<strong>Exterior View 7</strong><br>Capital One JVC - Night View"
+            data-caption="<strong>Capital One JVC</strong><br>Project imagery"
             className="about-img" 
             id="about-img-1"
           >
-            <img src="/IMG07.jpg" alt="Project Image 1" />
+            <img src="/img9.png" alt="Project Image 1" />
             <div className="about-img-overlay">
               <span className="about-img-icon">🔍</span>
             </div>
@@ -361,7 +361,7 @@ const About = () => {
           {/* Hidden images for full gallery */}
           {allGalleryImages.map((img, index) => {
             // Skip images already shown above
-            if (['/IMG07.jpg', '/IMG05.jpg', '/IMG01.jpg', '/IMG03.jpg', '/spotlight-banner.webp'].includes(img.src)) {
+            if (['/img9.png', '/IMG05.jpg', '/IMG01.jpg', '/IMG03.jpg', '/spotlight-banner.webp'].includes(img.src)) {
               return null;
             }
             return (
