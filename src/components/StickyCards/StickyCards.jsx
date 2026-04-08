@@ -20,31 +20,24 @@ const StickyCards = () => {
     },
     {
       index: "02",
-      title: "Indoor Gym",
-      image: "/IMG07.jpg",
-      description:
-        "World-class facilities including a fully equipped gym, swimming pool, and recreational areas. Every amenity crafted to enhance your work-life balance.",
-    },
-    {
-      index: "03",
       title: "Leisure Area",
       image: "/IMG06.jpg",
       description:
-        "World-class facilities including a fully equipped gym, swimming pool, and recreational areas. Every amenity crafted to enhance your work-life balance.",
+        "World-class facilities and recreational areas. Every amenity crafted to enhance your work-life balance.",
     },
     {
-      index: "04",
+      index: "03",
       title: "Retail Area",
       image: "/spotlight/CANOPY_NIGHT_VIEW.jpg",
       description:
         "Premium retail spaces offering strong visibility and steady footfall within a thriving community. Strategically connected to major landmarks, business districts, and transportation networks for maximum accessibility and growth potential.",
     },
     {
-      index: "05",
+      index: "04",
       title: "Offices",
       image: "/spotlight/Light Office_View09.png",
       description:
-        "Premium retail spaces offering strong visibility and steady footfall within a thriving community. Strategically connected to major landmarks, business districts, and transportation networks for maximum accessibility and growth potential.",
+        "Designed with a futuristic architectural concept, Capital One JVC creates a seamless, technology-driven work environment that inspires productivity, collaboration, and growth.",
     },
   ];
 
@@ -52,7 +45,9 @@ const StickyCards = () => {
 
   useGSAP(
     () => {
-      const stickyCards = document.querySelectorAll(".sticky-card");
+      const root = container.current;
+      if (!root) return;
+      const stickyCards = root.querySelectorAll(".sticky-card");
 
       stickyCards.forEach((card, index) => {
         if (index < stickyCards.length - 1) {

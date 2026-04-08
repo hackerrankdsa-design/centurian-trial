@@ -146,7 +146,6 @@ const SplitCards = () => {
         }
       },
     });
-
   }, { scope: sectionRef });
 
   return (

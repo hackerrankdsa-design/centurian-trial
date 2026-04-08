@@ -393,6 +393,16 @@ export default function Home() {
     };
   }, { scope: pageRef });
 
+  useEffect(() => {
+    if (loading) return;
+    const t = requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        ScrollTrigger.refresh();
+      });
+    });
+    return () => cancelAnimationFrame(t);
+  }, [loading]);
+
   return (
     <>
       {loading && videoLoaded && <Preloader onComplete={handlePreloaderComplete} />}
