@@ -11,20 +11,16 @@ gsap.registerPlugin(ScrollTrigger);
 const SplitCards = () => {
   const sectionRef = useRef(null);
   const cardContainerRef = useRef(null);
-  const stickyHeaderRef = useRef(null);
 
   useGSAP(() => {
-    if (!sectionRef.current || !cardContainerRef.current || !stickyHeaderRef.current) return;
+    if (!sectionRef.current || !cardContainerRef.current) return;
 
     const section = sectionRef.current;
     const cardContainer = cardContainerRef.current;
-    const stickyHeader = stickyHeaderRef.current;
 
     let isGapAnimationCompleted = false;
     let isFlipAnimationCompleted = false;
 
-    // Set initial states
-    gsap.set(stickyHeader, { y: 40, opacity: 0 });
     gsap.set(cardContainer, { width: "100%" });
 
     ScrollTrigger.create({
@@ -36,28 +32,6 @@ const SplitCards = () => {
       scrub: 1,
       onUpdate: (self) => {
         const progress = self.progress;
-
-        // Header animation
-        if (progress >= 0.1 && progress <= 0.25) {
-          const headerProgress = gsap.utils.mapRange(0.1, 0.25, 0, 1, progress);
-          const yValue = gsap.utils.mapRange(0, 1, 40, 0, headerProgress);
-          const opacityValue = gsap.utils.mapRange(0, 1, 0, 1, headerProgress);
-
-          gsap.set(stickyHeader, {
-            y: yValue,
-            opacity: opacityValue,
-          });
-        } else if (progress < 0.1) {
-          gsap.set(stickyHeader, {
-            y: 40,
-            opacity: 0,
-          });
-        } else if (progress > 0.25) {
-          gsap.set(stickyHeader, {
-            y: 0,
-            opacity: 1,
-          });
-        }
 
         // Width animation
         if (progress <= 0.25) {
@@ -150,10 +124,6 @@ const SplitCards = () => {
 
   return (
     <section className="split-cards-section" ref={sectionRef}>
-      <div className="split-sticky-header" ref={stickyHeaderRef}>
-        <h1>Exceptional Spaces, Exceptional Design</h1>
-      </div>
-
       <div className="split-card-container" ref={cardContainerRef}>
         <div className="split-card split-card-1">
           <div className="split-card-front">

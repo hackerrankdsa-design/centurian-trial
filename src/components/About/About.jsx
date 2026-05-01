@@ -81,41 +81,56 @@ const About = () => {
   useGSAP(() => {
     const aboutScroll = document.querySelector(".about-scroll");
     const aboutHeader = document.querySelector(".about-header");
+    const isMobile = window.innerWidth <= 768;
     
-    // Use a reasonable fixed width for better control
-    const scrollWidth = window.innerWidth * 4; // 4x viewport width
+    // Use a responsive scroll width so mobile finishes naturally
+    // Mobile: 3× viewport — fits 9 slots (~4%–85% left) + card width without clipping; desktop unchanged
+    const scrollWidth = window.innerWidth * (isMobile ? 3 : 4);
     aboutScroll.style.width = `${scrollWidth}px`;
-    
-    const containerWidth = aboutScroll.offsetWidth;
-    const viewportWidth = window.innerWidth;
-    
-    // Measure the actual header width to ensure we show it completely
-    const headerWidth = aboutHeader ? aboutHeader.offsetWidth : viewportWidth * 3;
 
-    const maxTranslateX = containerWidth - viewportWidth;
-    const targetProgress = 1;
-    const maxTranslateAtTarget = maxTranslateX / targetProgress;
-    
-    // Calculate how much counter-translation the header needs to be fully visible
-    // Header needs to travel (headerWidth - viewportWidth) in the viewport
-    // Container travels maxTranslateX, header counter-translates by X
-    // Net header movement = maxTranslateX - X should be <= (headerWidth - viewportWidth)
-    // So X >= maxTranslateX - (headerWidth - viewportWidth)
-    // As a ratio: X/maxTranslateX >= 1 - (headerWidth - viewportWidth)/maxTranslateX
-    const headerTravelNeeded = Math.max(0, headerWidth - viewportWidth);
-    const counterTranslateRatio = Math.min(0.85, Math.max(0.5, 1 - (headerTravelNeeded / maxTranslateX) + 0.1));
+    const getMaxTranslateX = () =>
+      Math.max(0, aboutScroll.offsetWidth - window.innerWidth);
 
-    const images = [
-      { id: "#about-img-1", endTranslateX: -800 },
-      { id: "#about-img-2", endTranslateX: -1200 },
-      { id: "#about-img-3", endTranslateX: -600 },
-      { id: "#about-img-4", endTranslateX: -1000 },
-      { id: "#about-img-5", endTranslateX: -900 },
-    ];
+    const getCounterTranslateRatio = (maxTx) => {
+      if (!aboutHeader || maxTx <= 0) return 0.85;
+      const headerW = aboutHeader.offsetWidth;
+      const vw = window.innerWidth;
+      const headerTravelNeeded = Math.max(0, headerW - vw);
+      return Math.min(0.85, Math.max(0.5, 1 - headerTravelNeeded / maxTx + 0.1));
+    };
+
+    /** Mobile: almost no intro — avoid long “dead” scroll before horizontal move. Desktop unchanged. */
+    const MOBILE_SCROLL_INTRO = 0.04;
+    const desktopFadeEnd = 0.1;
+    const desktopHoldEnd = 0.25;
+
+    /** Pin length from live width; desktop keeps ≥ original 18×vh so wide layouts still finish. */
+    const getPinnedScrollDistance = () => {
+      const mobile = window.innerWidth <= 768;
+      const vh = window.innerHeight;
+      const maxTx = getMaxTranslateX();
+      if (!mobile) {
+        const horizontalShare = 1 - desktopHoldEnd;
+        return Math.max(
+          vh * 18,
+          Math.ceil((maxTx * 1.02) / horizontalShare)
+        );
+      }
+      const horizontalShare = 1 - MOBILE_SCROLL_INTRO;
+      return Math.max(100, Math.ceil(maxTx / horizontalShare));
+    };
+
+    const imageBaseOffsets = [-800, -1200, -600, -1000, -900];
+    const imageOffsetMultiplier = isMobile ? 0.45 : 1;
+    const images = imageBaseOffsets.map((offset, index) => ({
+      id: `#about-img-${index + 1}`,
+      endTranslateX: offset * imageOffsetMultiplier,
+    }));
 
     // Function to recalculate width on resize
     const recalculateWidth = () => {
-      const newScrollWidth = window.innerWidth * 4;
+      const mobile = window.innerWidth <= 768;
+      const newScrollWidth = window.innerWidth * (mobile ? 3 : 4);
       aboutScroll.style.width = `${newScrollWidth}px`;
       ScrollTrigger.refresh();
     };
@@ -141,13 +156,10 @@ const About = () => {
       },
     });
 
-    // Main scroll animation - significantly increased scroll distance
-    const scrollDistance = window.innerHeight * 18; // Increased to 18 for much more scroll time
-    
     ScrollTrigger.create({
       trigger: ".about",
       start: "top top",
-      end: `+=${scrollDistance}`,
+      end: () => `+=${getPinnedScrollDistance()}`,
       pin: true,
       pinSpacing: true,
       scrub: 1,
@@ -155,30 +167,38 @@ const About = () => {
       invalidateOnRefresh: true,
       onUpdate: (self) => {
         const progress = self.progress;
+        const maxTx = getMaxTranslateX();
 
         let opacity, scale, translateX;
 
-        // Faster fade-in (10%), longer hold (10-25%), then horizontal scroll
-        if (progress <= 0.1) {
-          // Fade in phase - quick
-          const fadeProgress = progress / 0.1;
+        if (isMobile) {
+          if (progress <= MOBILE_SCROLL_INTRO) {
+            const fadeProgress = progress / MOBILE_SCROLL_INTRO;
+            opacity = fadeProgress;
+            scale = 0.92 + 0.08 * fadeProgress;
+            translateX = 0;
+          } else {
+            opacity = 1;
+            scale = 1;
+            const adjustedProgress =
+              (progress - MOBILE_SCROLL_INTRO) / (1 - MOBILE_SCROLL_INTRO);
+            translateX = -Math.min(adjustedProgress * maxTx, maxTx);
+          }
+        } else if (progress <= desktopFadeEnd) {
+          const fadeProgress = progress / desktopFadeEnd;
           opacity = fadeProgress;
           scale = 0.85 + 0.15 * fadeProgress;
           translateX = 0;
-        } else if (progress <= 0.25) {
-          // Hold phase - content is fully visible, no horizontal scroll yet
+        } else if (progress <= desktopHoldEnd) {
           opacity = 1;
           scale = 1;
           translateX = 0;
         } else {
-          // Horizontal scroll phase (75% of total scroll distance)
           opacity = 1;
           scale = 1;
-          const adjustedProgress = (progress - 0.25) / (1 - 0.25);
-          translateX = -Math.min(
-            adjustedProgress * maxTranslateAtTarget,
-            maxTranslateX
-          );
+          const adjustedProgress =
+            (progress - desktopHoldEnd) / (1 - desktopHoldEnd);
+          translateX = -Math.min(adjustedProgress * maxTx, maxTx);
         }
 
         gsap.set(aboutScroll, {
@@ -194,17 +214,20 @@ const About = () => {
       ScrollTrigger.create({
         trigger: ".about",
         start: "top top",
-        end: `+=${scrollDistance}`,
+        end: () => `+=${getPinnedScrollDistance()}`,
         scrub: 1,
         onUpdate: (self) => {
           const progress = self.progress;
+          const introEnd = isMobile ? MOBILE_SCROLL_INTRO : desktopHoldEnd;
 
-          // Start parallax after hold phase (25%)
-          if (progress >= 0.25) {
-            const adjustedProgress = (progress - 0.25) / (1 - 0.25);
+          if (progress >= introEnd) {
+            const adjustedProgress =
+              (progress - introEnd) / (1 - introEnd);
             gsap.set(img.id, {
               x: `${img.endTranslateX * adjustedProgress}px`,
             });
+          } else {
+            gsap.set(img.id, { x: "0px" });
           }
         },
       });
@@ -214,35 +237,46 @@ const About = () => {
     ScrollTrigger.create({
       trigger: ".about",
       start: "top top",
-      end: `+=${scrollDistance}`,
+      end: () => `+=${getPinnedScrollDistance()}`,
       scrub: 1,
       onUpdate: (self) => {
         const progress = self.progress;
-        
+        const maxTx = getMaxTranslateX();
+        const counterRatio = getCounterTranslateRatio(maxTx);
+
         let opacity, scale, headerTranslateX;
-        
-        // Fade in during first 10% - quick
-        if (progress <= 0.1) {
-          const fadeProgress = progress / 0.1;
+
+        if (isMobile) {
+          if (progress <= MOBILE_SCROLL_INTRO) {
+            const fadeProgress = progress / MOBILE_SCROLL_INTRO;
+            opacity = fadeProgress;
+            scale = 0.92 + 0.08 * fadeProgress;
+            headerTranslateX = 0;
+          } else {
+            opacity = 1;
+            scale = 1;
+            const adjustedProgress =
+              (progress - MOBILE_SCROLL_INTRO) /
+              (1 - MOBILE_SCROLL_INTRO);
+            headerTranslateX = adjustedProgress * maxTx * counterRatio;
+          }
+        } else if (progress <= desktopFadeEnd) {
+          const fadeProgress = progress / desktopFadeEnd;
           opacity = fadeProgress;
           scale = 0.85 + 0.15 * fadeProgress;
           headerTranslateX = 0;
-        } 
-        // Hold phase from 10% to 25% - no horizontal movement
-        else if (progress <= 0.25) {
+        } else if (progress <= desktopHoldEnd) {
           opacity = 1;
           scale = 1;
           headerTranslateX = 0;
-        }
-        // Horizontal scroll phase - header counter-translates to stay visible
-        else {
+        } else {
           opacity = 1;
           scale = 1;
-          const adjustedProgress = (progress <= 0.25 ? progress : (progress - 0.25) / (1 - 0.25));
-          // Header counter-translates based on calculated ratio to ensure full visibility
-          headerTranslateX = adjustedProgress * maxTranslateX * counterTranslateRatio;
+          const adjustedProgress =
+            (progress - desktopHoldEnd) / (1 - desktopHoldEnd);
+          headerTranslateX = adjustedProgress * maxTx * counterRatio;
         }
-        
+
         gsap.set(".about-header", {
           opacity: opacity,
           scale: scale,

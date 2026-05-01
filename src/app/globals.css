@@ -538,16 +538,29 @@ section {
   }
 
   .logo-nav {
-    padding: 1rem 1.25rem;
+    top: 0;
+    left: 0;
+    padding: 0;
+    overflow: visible;
   }
 
   .logo-container {
     gap: 0.5rem;
+    margin: 0;
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow: visible;
   }
 
   .logo-img {
-    width: 80px !important;
-    height: 80px !important;
+    width: 240px !important;
+    height: 240px !important;
+    clip-path: inset(35px);
+    transform: translate(-35px, -35px);
+  }
+
+  .logo-img:hover {
+    transform: translate(-35px, -35px) scale(1.05);
   }
 
   .logo-text {
@@ -558,16 +571,28 @@ section {
     width: calc(100% - 4rem);
   }
 
+  /* Spotlight titles: 1.5× previous mobile sizing */
+  .spotlight-grid .header h1 {
+    font-size: clamp(2.175rem, 6vw, 3.975rem);
+    line-height: 1.12;
+  }
+
   .spotlight-images {
     width: 200vw;
     left: -25vw;
+  }
+
+  .spotlight-grid .spotlight-images .img {
+    transform: scale(1.3);
+    transform-origin: center center;
   }
 
   .hero-content {
     padding: 0 6vw;
     padding-top: 100px;
     max-width: 100%;
-    justify-content: flex-start;
+    justify-content: center;
+    align-items: center;
   }
 
   .hero-content::before {
@@ -578,10 +603,13 @@ section {
 
   .hero-content > * {
     max-width: 100%;
+    text-align: center;
   }
 
   .hero-button-wrapper {
     margin-top: 1.5rem;
+    display: flex;
+    justify-content: center;
   }
 
   .hero-button {
@@ -598,24 +626,29 @@ section {
     font-size: clamp(1.9rem, 9vw, 3.25rem);
     line-height: 1.05;
     margin-bottom: 0.75rem;
+    text-align: center;
   }
 
   .hero-heading::after {
     width: 50px;
     height: 2px;
     bottom: -0.25rem;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .hero-subheading {
     font-size: clamp(0.7rem, 2.5vw, 0.9rem);
     letter-spacing: 0.15em;
     margin-bottom: 1.5rem;
+    text-align: center;
   }
 
   .hero-description {
     font-size: clamp(0.85rem, 3.5vw, 1rem);
     line-height: 1.65;
     max-width: 100%;
+    text-align: center;
   }
 
   .project-header {
@@ -653,12 +686,25 @@ section {
 /* Small phones */
 @media (max-width: 480px) {
   .logo-nav {
-    padding: 0.75rem 1rem;
+    top: 0;
+    left: 0;
+    padding: 0;
+    overflow: visible;
+  }
+
+  .logo-container {
+    overflow: visible;
   }
 
   .logo-img {
-    width: 60px !important;
-    height: 60px !important;
+    width: 180px !important;
+    height: 180px !important;
+    clip-path: inset(35px);
+    transform: translate(-35px, -35px);
+  }
+
+  .logo-img:hover {
+    transform: translate(-35px, -35px) scale(1.05);
   }
 
   .hero-content {

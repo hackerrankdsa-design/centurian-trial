@@ -101,9 +101,6 @@ const StickyCards = () => {
               </div>
 
               <div className="sticky-card-copy">
-                <div className="sticky-card-copy-title">
-                  <p>(About the feature)</p>
-                </div>
                 <div className="sticky-card-copy-description">
                   <p>{cardData.description}</p>
                 </div>

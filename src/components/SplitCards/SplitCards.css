@@ -11,26 +11,6 @@
   z-index: 12;
 }
 
-.split-sticky-header {
-  position: absolute;
-  top: 20%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 2;
-}
-
-.split-sticky-header h1 {
-  font-family: "Barlow Condensed", sans-serif;
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  font-weight: 500;
-  line-height: 1;
-  text-align: center;
-  color: #c9a961;
-  will-change: transform, opacity;
-  transform: translateY(40px);
-  opacity: 0;
-}
-
 .split-card-container {
   position: relative;
   width: 100%;
@@ -135,19 +115,6 @@
     flex-direction: column;
   }
 
-  .split-sticky-header {
-    position: relative;
-    top: 0;
-    left: 0;
-    transform: none;
-    margin-bottom: 4rem;
-  }
-
-  .split-sticky-header h1 {
-    opacity: 1;
-    transform: none;
-  }
-
   .split-card-container {
     width: 100%;
     flex-direction: column;
@@ -160,12 +127,13 @@
     max-width: 400px;
     margin: 0 auto;
     border-radius: 20px !important;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
   }
 
-  .split-card-1,
-  .split-card-2,
-  .split-card-3,
+  /* Keep back face rotated for 3D flip (do not flatten with transform: none) */
   .split-card-back {
-    transform: none !important;
+    transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
   }
 }
